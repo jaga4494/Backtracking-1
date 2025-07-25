@@ -23,6 +23,8 @@ class Solution {
             return;
         }
 
+        // we need to try all possible splits of the string — and that’s exactly 
+        // what a for loop does in backtracking
         for (int i = index; i < num.length(); ++i) {
 
             // if the substring is more than oe char, it should not start with 0.
@@ -39,6 +41,7 @@ class Solution {
                 backtrack(num, i + 1, cur, cur, target, path.append(cur));
                 path.setLength(pathLen);
             } else {
+                // multiple recursive calls - Try every possible operation with that number.
                 backtrack(num, i + 1, calc + cur, +cur, target, path.append("+").append(cur));
                 path.setLength(pathLen);
 
@@ -68,6 +71,8 @@ class Solution {
             }
 
             long cur = Long.parseLong(num.substring(index, i + 1));
+
+
 
             if (index == 0) {
                 recurse(num, i + 1, cur, cur, target, path + cur);
